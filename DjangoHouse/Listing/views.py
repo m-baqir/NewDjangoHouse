@@ -6,6 +6,12 @@ TEMPLATE_DIRS = (
 )
 
 # Create your views here.
+
+
 def index(request):
     listings = Listing.objects.order_by('Date')
     return render(request, "index.html", {'listings': listings})
+
+
+def pivot(request):
+    return render(request, 'pivot.html')
