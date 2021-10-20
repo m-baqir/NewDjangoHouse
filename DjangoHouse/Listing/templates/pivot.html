@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="#"></script>
+    <link rel="stylesheet" href="#" />
+    <meta name="viewport" content="width=device-width">
+    <title>My basic HTML page</title>
+</head>
+
+<body>
+    <h1>Flexmonster integration with Django</h1>
+    <div id="pivotContainer"></div>
+    <script src="https://cdn.flexmonster.com/flexmonster.js"></script>
+
+    <script>
+        var pivot = new Flexmonster({
+            container: "pivotContainer",
+            componentFolder: "https://cdn.flexmonster.com/",
+            toolbar: true,
+            report: {
+                dataSource: {
+                    filename: "listingdata.csv",
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
