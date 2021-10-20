@@ -36,31 +36,13 @@
         <div>
             <button class="start-btn">Get Started</button>
         </div>
-        <div class="map-placeholder">
-            <div id="mapBox">
-            </div>
-        </div>
-
-        <script>
-            //const data = `{{response|safe}}`;
-            //console.log(data);
-        </script>
-
-        </div>
+        {% if title %}
         <div class="new-listings">
-            <h2>New Listings</h2>
+            <h2>{{ title }}</h2>
             <div class="listing-flex">
-                {% for listing in listings|slice:":30" %}
-                <div class="listing-item">
-                    <p>{{listing.Address}}</p>
-                    <p>${{listing.Price}}</p>
-                    <p>Bedrooms:{{listing.Bedrooms}}</p>
-                    <p>Date Scraped: {{listing.Date}}</p>
 
-                </div>
-                {% endfor %}
             </div>
-        </div>
+        {% endif %}
     </main>
 
     <footer>
