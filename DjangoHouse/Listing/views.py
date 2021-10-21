@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from .models import Listing
 import requests
+import pandas as pd
+import numpy as np
+from sklearn.model_selection  import test_train_split
+from sklearn.linear_model import LinearRegression
 # Create your views here.
 TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates"),'
@@ -29,6 +33,22 @@ def Neighbourhoods(request):
         "title": "List of Toronto Neighbourhoods",
     })
 
-
 def pivot(request):
-    return render(request, 'pivot.html')
+    data = pd.read_csv('houseprice.csv')
+    X = data.drop('price',axis=1)
+    Y = data["price"]
+    X_Train , X_Test , Y_Train , Y_Test = train_test_split(X , Y , test_size= .30)
+    model = LinearRegression()
+    fit = model.fit(X_Train,Y_Train)
+
+    area = float(request.GET['area'])
+    age = float(request.GET['age'])
+    rooms = float(request.GET['rooms'])
+    population = float(request.GET['population'])
+    price = fit.predict(np.array([area,age,rooms,population]))
+    price = "The predicted price is "+str(round(price[0]))
+    return render(request,'pivot.html',{"response":price});
+
+
+def Predict(request):
+    return render(request , "predict.html")
