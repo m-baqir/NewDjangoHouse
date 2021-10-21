@@ -66,7 +66,7 @@
             <div class="listing-flex">
                 {% for listing in listings|slice:":30" %}
                 <div class="listing-item">
-                    <p>{{listing.Address}}</p>
+                    <p><a href="/detail/{{ listing.id }}">{{listing.Address}}</a></p>
                     <p>${{listing.Price}}</p>
                     <p>Bedrooms:{{listing.Bedrooms}}</p>
                     <p>Date Scraped: {{listing.Date}}</p>
