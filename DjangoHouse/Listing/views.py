@@ -34,6 +34,10 @@ def Neighbourhoods(request):
     })
 
 def pivot(request):
+    return render(request,'pivot.html');
+
+
+def Predict(request):
     data = pd.read_csv('houseprice.csv')
     X = data.drop('price',axis=1)
     Y = data["price"]
@@ -47,8 +51,4 @@ def pivot(request):
     population = float(request.GET['population'])
     price = fit.predict(np.array([area,age,rooms,population]))
     price = "The predicted price is "+str(round(price[0]))
-    return render(request,'pivot.html',{"response":price});
-
-
-def Predict(request):
-    return render(request , "predict.html")
+    return render(request , "predict.html",{"response":price})
