@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Listing
 import requests
 import pandas as pd
@@ -36,6 +36,14 @@ def Neighbourhoods(request):
 def pivot(request):
     return render(request,'pivot.html');
 
+# Housing Detail
+def detail(request, id=None):
+    id = request.form.get('id')
+    house =  get_object_or_404(Listing, id=id)
+    context={
+        'house': house,
+    }
+    return render(request, "detail.html", context)
 
 def Predict(request):
     data = pd.read_csv('houseprice.csv')
